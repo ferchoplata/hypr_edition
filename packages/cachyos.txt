@@ -1,0 +1,3 @@
+# Paquetes especificos de CachyOS.
+# Se mantiene pequeno al inicio porque CachyOS ya suele traer una base completa.
+cachyos-hello

@@ -1,0 +1,9 @@
+# Aplicaciones de escritorio recomendadas para instalacion completa
+firefox
+thunar
+thunar-archive-plugin
+file-roller
+mousepad
+loupe
+mpv
+obsidian

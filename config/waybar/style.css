@@ -1,0 +1,38 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font", "Noto Sans", sans-serif;
+  font-size: 13px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: rgba(24, 24, 37, 0.92);
+  color: #cdd6f4;
+}
+
+#workspaces button {
+  color: #a6adc8;
+  padding: 0 10px;
+}
+
+#workspaces button.active {
+  color: #11111b;
+  background: #a6e3a1;
+}
+
+#clock,
+#pulseaudio,
+#network,
+#battery,
+#tray {
+  padding: 0 10px;
+}
+
+#battery.warning {
+  color: #f9e2af;
+}
+
+#battery.critical {
+  color: #f38ba8;
+}

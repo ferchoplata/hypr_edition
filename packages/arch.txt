@@ -1,0 +1,8 @@
+# Dependencias que una instalacion minima de Arch puede no traer
+sudo
+base-devel
+linux-firmware
+mesa
+sof-firmware
+man-db
+man-pages
