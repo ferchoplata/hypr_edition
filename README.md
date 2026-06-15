@@ -1,49 +1,61 @@
-# hypr_edition
+# Simple Edition
 
-Instalador post-instalacion para dejar Hyprland configurado en CachyOS y Arch Linux.
+Simple Edition es un instalador modular para preparar un sistema personal basado en CachyOS o Arch Linux.
 
-La primera meta del proyecto es funcionar bien sobre CachyOS, porque ya trae una base moderna y comoda. El instalador tambien detecta Arch Linux para instalar dependencias extra cuando la base es mas minima.
-
-## Estado actual
-
-Version inicial en desarrollo.
-
-Incluye:
-
-- Deteccion de CachyOS y Arch/Arch-based.
-- Menu de instalacion.
-- Listas de paquetes separadas por sistema.
-- Omision segura de paquetes que no existan en los repositorios activos.
-- Backup automatico de configuraciones existentes.
-- Configuracion inicial de Hyprland, Waybar, Kitty y Rofi.
+La idea principal es mantener el sistema en modulos pequenos. Cada modulo puede instalar, respaldar y, cuando sea seguro, desinstalar su parte.
 
 ## Uso
 
 En CachyOS o Arch Linux:
 
 ```bash
-git clone https://github.com/tu-usuario/hypr_edition.git
-cd hypr_edition
-chmod +x install.sh
-./install.sh
+cd simple-edition
+chmod +x simple.sh modules/*/*.sh
+./simple.sh
 ```
 
-No ejecutes el instalador como root. El script pedira `sudo` cuando necesite instalar paquetes o activar servicios.
+Desde Windows esta carpeta sirve para editar el proyecto. Para ejecutar el instalador de verdad, copiala a una instalacion Linux o a una maquina virtual con CachyOS/Arch.
 
 ## Estructura
 
 ```text
-install.sh          Entrada principal del instalador
-lib/                Funciones del instalador
-packages/           Listas de paquetes
-config/             Dotfiles que se copian a ~/.config
-docs/ROADMAP.md     Proximos pasos del proyecto
+simple-edition/
+  simple.sh
+  lib/
+  modules/
+  profiles/
+  backups/
+  exports/
+  logs/
 ```
 
-## Seguridad
+## Perfiles
 
-Antes de copiar configuraciones, el instalador crea backups en:
+- `cachyos-hyprland`: perfil principal recomendado.
+- `arch-hyprland`: perfil compatible para Arch puro.
 
-```text
-~/.local/share/hypr_edition/backups/
-```
+## Exportar
+
+La opcion `Exportar sistema actual` genera un archivo `.tar.gz` con listas de paquetes y configuraciones conocidas para reconstruir el sistema mas adelante.
+
+## Primera prueba
+
+La guia para probarlo en una maquina virtual esta en `docs/first-vm-test.md`.
+
+## Modulos iniciales
+
+- `base`: herramientas esenciales del sistema.
+- `aur`: instala `yay` si no existe.
+- `audio`: PipeWire, WirePlumber y control de volumen.
+- `bluetooth`: BlueZ y Blueman.
+- `drivers`: firmware, microcode y soporte grafico base.
+- `git`: Git, GitHub CLI y LazyGit.
+- `login-sddm`: login manager SDDM con tema Simple Future.
+- `apps`: navegador, editor, multimedia, archivos y utilidades de terminal.
+- `terminal`: Kitty, Zsh, Starship y Fastfetch.
+- `theme-simple-future`: tema futurista sobrio para Kitty, Waybar, Rofi y SwayNC.
+- `hyprland`: compositor, atajos, autostart y configuracion visual base.
+
+## Enfoque
+
+La base principal sera CachyOS, pero el instalador se mantiene compatible con Arch puro siempre que sea razonable.
