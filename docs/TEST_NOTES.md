@@ -72,3 +72,4 @@ Resultado:
 ## Errores conocidos revisados
 
 - `dwindle:pseudotile` no existe en Hyprland actual; la config base usa `preserve_split` solamente.
+- El aviso `Hyprland was started without start-hyprland` se corrige entrando desde la sesion `hypr_edition` creada por el instalador.

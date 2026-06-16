@@ -14,6 +14,7 @@ files=(
   lib/dotfiles.sh
   lib/packages.sh
   lib/report.sh
+  lib/session.sh
 )
 
 for file in "${files[@]}"; do

@@ -76,5 +76,6 @@ Despues de revisar el resultado en dry-run, ejecuta el instalador real:
 - opcion de instalacion seleccionada
 - paquetes faltantes reportados por el instalador
 - alternativas de paquetes elegidas, por ejemplo `rofi-wayland|rofi`
+- sesion seleccionada en SDDM, por ejemplo `hypr_edition`
 - comando que fallo, si alguno falla
 - ultimas 20 lineas de la terminal cuando algo falle

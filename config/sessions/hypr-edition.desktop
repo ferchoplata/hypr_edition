@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=hypr_edition
+Comment=Hyprland session for hypr_edition
+Exec=start-hyprland
+Type=Application
+DesktopNames=Hyprland

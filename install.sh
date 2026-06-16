@@ -15,6 +15,8 @@ source "${SCRIPT_DIR}/lib/backup.sh"
 source "${SCRIPT_DIR}/lib/dotfiles.sh"
 # shellcheck source=lib/report.sh
 source "${SCRIPT_DIR}/lib/report.sh"
+# shellcheck source=lib/session.sh
+source "${SCRIPT_DIR}/lib/session.sh"
 
 usage() {
   cat <<'USAGE'
@@ -70,6 +72,7 @@ MENU
         install_packages full
         backup_configs
         install_dotfiles
+        configure_hyprland_session
         enable_recommended_services
         success "Instalacion completa finalizada."
         ;;
@@ -84,6 +87,7 @@ MENU
         ensure_not_root
         backup_configs
         install_dotfiles
+        configure_hyprland_session
         success "Configuracion copiada."
         ;;
       4)
