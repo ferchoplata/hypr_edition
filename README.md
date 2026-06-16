@@ -14,6 +14,7 @@ Hoy el proyecto incluye:
 - backup de configuraciones existentes
 - copia de dotfiles base para Hyprland, Waybar, Kitty y Rofi
 - activacion de servicios recomendados cuando existen
+- reporte basico del sistema desde el menu
 
 ## Uso
 

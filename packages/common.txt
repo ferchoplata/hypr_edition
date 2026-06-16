@@ -35,6 +35,7 @@ cliphist
 playerctl
 fastfetch
 pacman-contrib
+pciutils
 
 # Fuentes y apariencia
 ttf-jetbrains-mono-nerd

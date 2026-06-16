@@ -12,6 +12,7 @@ files=(
   lib/detect.sh
   lib/dotfiles.sh
   lib/packages.sh
+  lib/report.sh
 )
 
 for file in "${files[@]}"; do

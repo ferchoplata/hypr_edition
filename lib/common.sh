@@ -67,3 +67,8 @@ ask_yes_no() {
   read -r -p "${prompt} [s/N]: " answer
   [[ "${answer}" == "s" || "${answer}" == "S" || "${answer}" == "si" || "${answer}" == "SI" ]]
 }
+
+pause() {
+  local _
+  read -r -p "Presiona Enter para continuar..." _
+}

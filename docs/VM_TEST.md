@@ -56,6 +56,8 @@ Reemplaza `TU_USUARIO` con tu usuario u organizacion de GitHub.
 
 Empieza con la opcion `4` para crear un backup, luego usa la opcion `2` para instalar los paquetes base de Hyprland.
 
+Usa la opcion `5` para revisar que el instalador detecte bien el sistema, `pacman`, `systemd`, helper AUR y GPU.
+
 Si eso funciona, ejecuta la opcion `3` para copiar los dotfiles.
 
 Usa la opcion `1` solo despues de que los pasos pequenos funcionen.

@@ -13,6 +13,8 @@ source "${SCRIPT_DIR}/lib/packages.sh"
 source "${SCRIPT_DIR}/lib/backup.sh"
 # shellcheck source=lib/dotfiles.sh
 source "${SCRIPT_DIR}/lib/dotfiles.sh"
+# shellcheck source=lib/report.sh
+source "${SCRIPT_DIR}/lib/report.sh"
 
 usage() {
   cat <<'USAGE'
@@ -55,7 +57,8 @@ Selecciona una opcion:
   2) Solo paquetes base de Hyprland
   3) Solo copiar configuracion
   4) Crear backup de configuraciones actuales
-  5) Salir
+  5) Ver estado del sistema
+  6) Salir
 
 MENU
     read -r -p "Opcion: " choice
@@ -89,6 +92,10 @@ MENU
         success "Backup creado."
         ;;
       5)
+        system_report
+        pause
+        ;;
+      6)
         info "Saliendo."
         exit 0
         ;;
