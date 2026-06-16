@@ -13,6 +13,7 @@ Hoy el proyecto incluye:
 - listas de paquetes separadas por sistema
 - backup de configuraciones existentes
 - copia de dotfiles base para Hyprland, Waybar, Kitty y Rofi
+- tema sobrio y autosuficiente para Kitty
 - activacion de servicios recomendados cuando existen
 - reporte basico del sistema desde el menu
 
