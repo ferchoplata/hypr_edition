@@ -25,6 +25,18 @@ Resultado:
 
 ```
 
+## Preflight
+
+```bash
+bash scripts/preflight.sh
+```
+
+Resultado:
+
+```text
+
+```
+
 ## Dry-run
 
 ```bash

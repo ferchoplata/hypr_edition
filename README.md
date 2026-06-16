@@ -44,6 +44,12 @@ Para validar sintaxis antes de probar:
 bash scripts/validate.sh
 ```
 
+Para revisar paquetes y entorno sin instalar nada:
+
+```bash
+bash scripts/preflight.sh
+```
+
 Para ensayar el flujo sin aplicar cambios:
 
 ```bash

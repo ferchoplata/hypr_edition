@@ -7,6 +7,7 @@ cd "${ROOT_DIR}"
 
 files=(
   install.sh
+  scripts/preflight.sh
   lib/backup.sh
   lib/common.sh
   lib/detect.sh

@@ -46,6 +46,7 @@ docs/PRIVATE_REPO_SSH.md
 git clone git@github.com:TU_USUARIO/hypr_edition.git
 cd hypr_edition
 bash scripts/validate.sh
+bash scripts/preflight.sh
 chmod +x install.sh
 ./install.sh --dry-run
 ```
