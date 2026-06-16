@@ -28,14 +28,35 @@ read_package_list() {
   done
 }
 
+resolve_package_spec() {
+  local spec="$1"
+  local candidate
+  local -a candidates
+
+  IFS='|' read -r -a candidates <<< "${spec}"
+
+  for candidate in "${candidates[@]}"; do
+    if pacman -Si "${candidate}" >/dev/null 2>&1; then
+      printf '%s\n' "${candidate}"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
 filter_available_packages() {
+  local spec
   local package
 
-  for package in "$@"; do
-    if pacman -Si "${package}" >/dev/null 2>&1; then
+  for spec in "$@"; do
+    if package="$(resolve_package_spec "${spec}")"; then
+      if [[ "${package}" != "${spec}" ]]; then
+        printf '[INFO] Usando alternativa para %s: %s\n' "${spec}" "${package}" >&2
+      fi
       printf '%s\n' "${package}"
     else
-      warn "Paquete no encontrado en repositorios activos, se omitira: ${package}"
+      warn "Paquete no encontrado en repositorios activos, se omitira: ${spec}"
     fi
   done
 }
@@ -52,7 +73,7 @@ install_packages() {
   run_cmd sudo pacman -Syu
 
   mapfile -t requested_packages < <(package_file_for_mode "${mode}" | read_package_list | sort -u)
-  mapfile -t available_packages < <(filter_available_packages "${requested_packages[@]}")
+  mapfile -t available_packages < <(filter_available_packages "${requested_packages[@]}" | sort -u)
 
   if [[ "${#available_packages[@]}" -eq 0 ]]; then
     warn "No hay paquetes para instalar."

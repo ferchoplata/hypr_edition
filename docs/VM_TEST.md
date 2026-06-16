@@ -75,5 +75,6 @@ Despues de revisar el resultado en dry-run, ejecuta el instalador real:
 - ajustes de la VM
 - opcion de instalacion seleccionada
 - paquetes faltantes reportados por el instalador
+- alternativas de paquetes elegidas, por ejemplo `rofi-wayland|rofi`
 - comando que fallo, si alguno falla
 - ultimas 20 lineas de la terminal cuando algo falle

@@ -16,14 +16,19 @@ check_package_mode() {
   local mode="$1"
   local missing=0
   local package
+  local spec
 
   info "Revisando paquetes del modo: ${mode}"
 
-  while IFS= read -r package; do
-    if pacman -Si "${package}" >/dev/null 2>&1; then
-      printf '[OK] %s\n' "${package}"
+  while IFS= read -r spec; do
+    if package="$(resolve_package_spec "${spec}")"; then
+      if [[ "${package}" == "${spec}" ]]; then
+        printf '[OK] %s\n' "${package}"
+      else
+        printf '[OK] %s -> %s\n' "${spec}" "${package}"
+      fi
     else
-      printf '[MISS] %s\n' "${package}"
+      printf '[MISS] %s\n' "${spec}"
       missing=1
     fi
   done < <(package_file_for_mode "${mode}" | read_package_list | sort -u)
