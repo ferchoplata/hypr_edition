@@ -20,15 +20,28 @@ Hoy el proyecto incluye:
 Ejecutalo desde una instalacion real de CachyOS o Arch Linux:
 
 ```bash
-git clone https://github.com/tu-usuario/hypr_edition.git
+git clone git@github.com:TU_USUARIO/hypr_edition.git
 cd hypr_edition
 chmod +x install.sh
 ./install.sh
 ```
 
+Reemplaza `TU_USUARIO` con tu usuario u organizacion de GitHub.
+
 No lo ejecutes como `root`. El script usa `sudo` cuando necesita instalar paquetes o habilitar servicios.
 
 Si estas trabajando desde Windows, puedes editar aqui y validar Bash desde WSL. La prueba real del instalador conviene hacerla en Arch o CachyOS, idealmente dentro de una VM al principio.
+
+Para preparar esa prueba:
+
+- [docs/VM_TEST.md](docs/VM_TEST.md): guia de prueba en VMware/CachyOS.
+- [docs/PRIVATE_REPO_SSH.md](docs/PRIVATE_REPO_SSH.md): clonar un repo privado desde la VM.
+
+Para validar sintaxis antes de probar:
+
+```bash
+bash scripts/validate.sh
+```
 
 ## Estructura
 
@@ -38,6 +51,7 @@ lib/                Funciones de deteccion, paquetes, backup y dotfiles
 packages/           Listas de paquetes por perfil/base
 config/             Dotfiles que se copian a ~/.config
 assets/             Recursos del proyecto
+scripts/            Herramientas de validacion y mantenimiento
 docs/ROADMAP.md     Siguientes fases del instalador
 ```
 
