@@ -61,6 +61,8 @@ Usa la opcion `5` para revisar que el instalador detecte bien el sistema, `pacma
 
 Si eso funciona, ejecuta la opcion `3` para copiar los dotfiles.
 
+El instalador debe instalar y habilitar `sddm` para mostrar login grafico en el siguiente arranque.
+
 Usa la opcion `1` solo despues de que los pasos pequenos funcionen.
 
 Despues de revisar el resultado en dry-run, ejecuta el instalador real:
@@ -77,5 +79,6 @@ Despues de revisar el resultado en dry-run, ejecuta el instalador real:
 - paquetes faltantes reportados por el instalador
 - alternativas de paquetes elegidas, por ejemplo `rofi-wayland|rofi`
 - sesion seleccionada en SDDM, por ejemplo `hypr_edition`
+- estado de `sddm.service`
 - comando que fallo, si alguno falla
 - ultimas 20 lineas de la terminal cuando algo falle

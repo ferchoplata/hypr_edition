@@ -19,6 +19,7 @@ pavucontrol
 networkmanager
 bluez
 bluez-utils
+sddm
 
 # Utilidades
 git

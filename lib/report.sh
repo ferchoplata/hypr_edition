@@ -14,6 +14,29 @@ detect_aur_helper() {
   printf 'no detectado\n'
 }
 
+detect_display_manager() {
+  if ! command_exists systemctl; then
+    printf 'no detectado\n'
+    return 0
+  fi
+
+  if systemctl list-unit-files sddm.service >/dev/null 2>&1; then
+    if systemctl is-enabled sddm.service >/dev/null 2>&1; then
+      printf 'sddm habilitado\n'
+    else
+      printf 'sddm instalado, no habilitado\n'
+    fi
+    return 0
+  fi
+
+  if systemctl list-unit-files display-manager.service >/dev/null 2>&1; then
+    printf 'display-manager detectado\n'
+    return 0
+  fi
+
+  printf 'no detectado\n'
+}
+
 print_gpu_info() {
   if ! command_exists lspci; then
     printf 'GPU: no se puede revisar porque falta lspci (paquete pciutils)\n'
@@ -43,6 +66,7 @@ Modo dry-run: ${DRY_RUN}
 Pacman: $(command_exists pacman && printf 'disponible' || printf 'no detectado')
 Systemd: $(command_exists systemctl && printf 'disponible' || printf 'no detectado')
 Helper AUR: $(detect_aur_helper)
+Display manager: $(detect_display_manager)
 
 REPORT
 
