@@ -68,3 +68,7 @@ Resultado:
 ## Fallos o ajustes necesarios
 
 -
+
+## Errores conocidos revisados
+
+- `dwindle:pseudotile` no existe en Hyprland actual; la config base usa `preserve_split` solamente.
