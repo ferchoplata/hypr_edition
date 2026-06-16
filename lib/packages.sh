@@ -49,7 +49,7 @@ install_packages() {
   require_command sudo
 
   info "Actualizando base de paquetes."
-  sudo pacman -Syu
+  run_cmd sudo pacman -Syu
 
   mapfile -t requested_packages < <(package_file_for_mode "${mode}" | read_package_list | sort -u)
   mapfile -t available_packages < <(filter_available_packages "${requested_packages[@]}")
@@ -60,7 +60,7 @@ install_packages() {
   fi
 
   info "Instalando ${#available_packages[@]} paquetes."
-  sudo pacman -S --needed "${available_packages[@]}"
+  run_cmd sudo pacman -S --needed "${available_packages[@]}"
 }
 
 enable_recommended_services() {
@@ -76,9 +76,13 @@ enable_recommended_services() {
   for service in "${services[@]}"; do
     if systemctl list-unit-files "${service}" >/dev/null 2>&1; then
       info "Habilitando ${service}."
-      sudo systemctl enable "${service}"
+      run_cmd sudo systemctl enable "${service}"
     fi
   done
 
-  systemctl --user enable pipewire.service pipewire-pulse.service wireplumber.service >/dev/null 2>&1 || true
+  if is_dry_run; then
+    run_cmd systemctl --user enable pipewire.service pipewire-pulse.service wireplumber.service
+  else
+    systemctl --user enable pipewire.service pipewire-pulse.service wireplumber.service >/dev/null 2>&1 || true
+  fi
 }

@@ -14,6 +14,35 @@ source "${SCRIPT_DIR}/lib/backup.sh"
 # shellcheck source=lib/dotfiles.sh
 source "${SCRIPT_DIR}/lib/dotfiles.sh"
 
+usage() {
+  cat <<'USAGE'
+Uso:
+  ./install.sh [--dry-run]
+
+Opciones:
+  --dry-run, -n   Muestra que haria el instalador sin aplicar cambios.
+  --help, -h      Muestra esta ayuda.
+USAGE
+}
+
+parse_args() {
+  while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+      --dry-run|-n)
+        DRY_RUN=1
+        ;;
+      --help|-h)
+        usage
+        exit 0
+        ;;
+      *)
+        die "Opcion desconocida: $1"
+        ;;
+    esac
+    shift
+  done
+}
+
 main_menu() {
   print_header
   detect_system
@@ -70,4 +99,5 @@ MENU
   done
 }
 
-main_menu "$@"
+parse_args "$@"
+main_menu

@@ -47,7 +47,7 @@ git clone git@github.com:TU_USUARIO/hypr_edition.git
 cd hypr_edition
 bash scripts/validate.sh
 chmod +x install.sh
-./install.sh
+./install.sh --dry-run
 ```
 
 Reemplaza `TU_USUARIO` con tu usuario u organizacion de GitHub.
@@ -59,6 +59,12 @@ Empieza con la opcion `4` para crear un backup, luego usa la opcion `2` para ins
 Si eso funciona, ejecuta la opcion `3` para copiar los dotfiles.
 
 Usa la opcion `1` solo despues de que los pasos pequenos funcionen.
+
+Despues de revisar el resultado en dry-run, ejecuta el instalador real:
+
+```bash
+./install.sh
+```
 
 ## Que anotar
 

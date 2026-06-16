@@ -43,6 +43,12 @@ Para validar sintaxis antes de probar:
 bash scripts/validate.sh
 ```
 
+Para ensayar el flujo sin aplicar cambios:
+
+```bash
+./install.sh --dry-run
+```
+
 ## Estructura
 
 ```text

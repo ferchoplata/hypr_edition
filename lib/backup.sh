@@ -14,12 +14,12 @@ backup_configs() {
 
   timestamp="$(date +%Y%m%d-%H%M%S)"
   backup_root="${HOME}/.local/share/${APP_NAME}/backups/${timestamp}"
-  mkdir -p "${backup_root}"
+  run_cmd mkdir -p "${backup_root}"
 
   for path in "${paths[@]}"; do
     if [[ -e "${path}" ]]; then
       info "Respaldando ${path}."
-      cp -a "${path}" "${backup_root}/"
+      run_cmd cp -a "${path}" "${backup_root}/"
     fi
   done
 

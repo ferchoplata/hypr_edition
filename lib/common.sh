@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 
 readonly APP_NAME="hypr_edition"
+DRY_RUN="${DRY_RUN:-0}"
 
 print_header() {
   cat <<'HEADER'
 hypr_edition
 Instalador post-instalacion para Hyprland en CachyOS y Arch Linux.
 HEADER
+
+  if is_dry_run; then
+    warn "Modo dry-run activo: se mostraran comandos sin aplicar cambios."
+  fi
 }
 
 info() {
@@ -38,6 +43,21 @@ ensure_not_root() {
 
 require_command() {
   command_exists "$1" || die "No se encontro el comando requerido: $1"
+}
+
+is_dry_run() {
+  [[ "${DRY_RUN}" == "1" ]]
+}
+
+run_cmd() {
+  if is_dry_run; then
+    printf '[DRY-RUN]'
+    printf ' %q' "$@"
+    printf '\n'
+    return 0
+  fi
+
+  "$@"
 }
 
 ask_yes_no() {
