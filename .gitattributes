@@ -4,6 +4,8 @@
 *.conf text eol=lf
 *.rasi text eol=lf
 *.css text eol=lf
+*.json text eol=lf
 *.jsonc text eol=lf
 *.txt text eol=lf
 *.md text eol=lf
+config/wlogout/layout text eol=lf

@@ -1,0 +1,128 @@
+@define-color bg rgba(8, 13, 20, 0.94);
+@define-color surface rgba(21, 31, 43, 0.92);
+@define-color surface_hover rgba(36, 51, 67, 0.96);
+@define-color border rgba(116, 199, 236, 0.28);
+@define-color text #dce7f3;
+@define-color muted #8294a8;
+@define-color cyan #74c7ec;
+@define-color blue #89b4fa;
+@define-color green #a6e3a1;
+@define-color yellow #f9e2af;
+@define-color red #f38ba8;
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font", "Noto Sans", sans-serif;
+  font-size: 12px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: @bg;
+  color: @text;
+  border: 1px solid @border;
+  border-radius: 14px;
+}
+
+tooltip {
+  background: #0d141e;
+  color: @text;
+  border: 1px solid @border;
+  border-radius: 10px;
+}
+
+tooltip label { padding: 7px; }
+
+#custom-launcher,
+#workspaces,
+#window,
+#mpris,
+#cpu,
+#memory,
+#bluetooth,
+#network,
+#pulseaudio,
+#battery,
+#clock,
+#custom-notification,
+#custom-power {
+  background: @surface;
+  margin: 5px 0;
+  padding: 0 11px;
+}
+
+#custom-launcher {
+  color: @cyan;
+  font-size: 18px;
+  margin-left: 5px;
+  border-radius: 10px 3px 3px 10px;
+}
+
+#workspaces {
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+#workspaces button {
+  color: @muted;
+  padding: 0 7px;
+  transition: all 160ms ease;
+}
+
+#workspaces button:hover {
+  color: @cyan;
+  background: @surface_hover;
+}
+
+#workspaces button.active {
+  color: @cyan;
+  background: rgba(116, 199, 236, 0.14);
+}
+
+#workspaces button.urgent { color: @red; }
+
+#window {
+  color: @muted;
+  border-radius: 3px 10px 10px 3px;
+}
+
+#mpris {
+  color: @cyan;
+  border-radius: 10px;
+  padding: 0 16px;
+}
+
+#cpu { color: @green; border-radius: 10px 3px 3px 10px; }
+#memory { color: @blue; border-radius: 3px; }
+#bluetooth { color: @cyan; border-radius: 3px; }
+#network { color: @cyan; border-radius: 3px; }
+#pulseaudio { color: @blue; border-radius: 3px; }
+#battery { color: @green; border-radius: 3px; }
+#clock { color: @text; border-radius: 3px; }
+#custom-notification { color: @cyan; font-size: 15px; border-radius: 3px; }
+#custom-power {
+  color: @red;
+  font-size: 15px;
+  margin-right: 5px;
+  border-radius: 3px 10px 10px 3px;
+}
+
+#cpu:hover,
+#memory:hover,
+#bluetooth:hover,
+#network:hover,
+#pulseaudio:hover,
+#battery:hover,
+#clock:hover,
+#custom-notification:hover,
+#custom-power:hover,
+#custom-launcher:hover {
+  background: @surface_hover;
+}
+
+#battery.warning { color: @yellow; }
+#battery.critical { color: @red; }
+#pulseaudio.muted,
+#network.disconnected,
+#bluetooth.disabled { color: @muted; }

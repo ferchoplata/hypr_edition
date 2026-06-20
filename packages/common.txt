@@ -17,6 +17,8 @@ pipewire-pulse
 wireplumber
 pavucontrol
 networkmanager
+network-manager-applet
+blueman
 bluez
 bluez-utils
 sddm

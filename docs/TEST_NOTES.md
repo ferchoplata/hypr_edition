@@ -69,6 +69,15 @@ Resultado:
 
 -
 
+## Prueba de Waybar y Command Center
+
+- `SUPER + SHIFT + B` muestra los tres modelos.
+- Cada modelo reinicia Waybar sin cerrar la sesion.
+- `SUPER + N` abre y cierra el centro de control.
+- Wi-Fi y Bluetooth reflejan su estado real.
+- Audio, brillo y controles multimedia responden cuando el hardware los ofrece.
+- El boton de energia abre `wlogout`.
+
 ## Errores conocidos revisados
 
 - `dwindle:pseudotile` no existe en Hyprland actual; la config base usa `preserve_split` solamente.

@@ -13,6 +13,8 @@ Hoy el proyecto incluye:
 - listas de paquetes separadas por sistema
 - backup de configuraciones existentes
 - copia de dotfiles base para Hyprland, Waybar, Kitty y Rofi
+- tres modelos profesionales de Waybar con selector instantaneo
+- centro de control para audio, brillo, conectividad, multimedia y notificaciones
 - tema sobrio y autosuficiente para Kitty
 - renderizado de Kitty por CPU en maquinas virtuales y por GPU en equipos fisicos
 - activacion de servicios recomendados cuando existen
@@ -38,6 +40,7 @@ Si estas trabajando desde Windows, puedes editar aqui y validar Bash desde WSL. 
 Para preparar esa prueba:
 
 - [docs/VM_TEST.md](docs/VM_TEST.md): guia de prueba en VMware/CachyOS.
+- [docs/WAYBAR_THEMES.md](docs/WAYBAR_THEMES.md): modelos de barra, centro de control y atajos.
 - [docs/PRIVATE_REPO_SSH.md](docs/PRIVATE_REPO_SSH.md): clonar un repo privado desde la VM.
 
 Para validar sintaxis antes de probar:

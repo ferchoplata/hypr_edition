@@ -1,0 +1,90 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 44,
+  "margin-top": 8,
+  "margin-left": 12,
+  "margin-right": 12,
+  "spacing": 10,
+  "modules-left": ["custom/launcher", "hyprland/window"],
+  "modules-center": ["hyprland/workspaces", "clock"],
+  "modules-right": ["network", "pulseaudio", "battery", "custom/notification", "custom/power"],
+  "custom/launcher": {
+    "format": "󰣇",
+    "tooltip-format": "Abrir aplicaciones",
+    "on-click": "rofi -show drun"
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 36,
+    "separate-outputs": true
+  },
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": "",
+      "urgent": ""
+    }
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%A, %d de %B}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "on-click": "swaync-client -t -sw"
+  },
+  "network": {
+    "format-wifi": "󰖩",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰖪",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\n{ipaddr}",
+    "tooltip-format-ethernet": "Ethernet\n{ipaddr}",
+    "on-click": "nm-connection-editor"
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "tooltip-format": "Volumen {volume}%",
+    "on-click": "pavucontrol",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
+    "states": {
+      "warning": 30,
+      "critical": 15
+    }
+  },
+  "custom/notification": {
+    "tooltip": true,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂠",
+      "dnd-none": "󰪓",
+      "inhibited-notification": "󰂛",
+      "inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰪑"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  "custom/power": {
+    "format": "",
+    "tooltip-format": "Energia y sesion",
+    "on-click": "wlogout"
+  }
+}

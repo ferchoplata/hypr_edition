@@ -7,6 +7,7 @@
 - Instalacion de paquetes base de Hyprland.
 - Backup automatico de configuraciones existentes.
 - Dotfiles iniciales para Hyprland, Waybar, Kitty y Rofi.
+- Tres modelos de Waybar y centro de control interactivo con SwayNC.
 
 ## Version 0.2
 
@@ -24,6 +25,6 @@
 
 ## Version 0.4
 
-- Agregar temas y wallpapers propios.
+- Agregar wallpapers propios y ampliar la identidad visual.
 - Preparar pruebas en maquina virtual.
 - Evaluar una experiencia mas cercana a HyDE sin abandonar Arch/CachyOS como base.
