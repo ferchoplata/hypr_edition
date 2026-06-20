@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=kitty
+GenericName=Terminal emulator
+Comment=Terminal de hypr_edition con deteccion automatica de VM
+TryExec=hypr-edition-kitty
+Exec=hypr-edition-kitty
+Icon=kitty
+Categories=System;TerminalEmulator;
+StartupNotify=true

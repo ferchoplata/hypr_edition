@@ -14,6 +14,7 @@ Hoy el proyecto incluye:
 - backup de configuraciones existentes
 - copia de dotfiles base para Hyprland, Waybar, Kitty y Rofi
 - tema sobrio y autosuficiente para Kitty
+- renderizado de Kitty por CPU en maquinas virtuales y por GPU en equipos fisicos
 - activacion de servicios recomendados cuando existen
 - reporte basico del sistema desde el menu
 

@@ -59,6 +59,8 @@ Empieza con la opcion `4` para crear un backup, luego usa la opcion `2` para ins
 
 Usa la opcion `5` para revisar que el instalador detecte bien el sistema, `pacman`, `systemd`, helper AUR y GPU.
 
+Kitty detecta la maquina virtual automaticamente y usa renderizado por software para evitar fallos de Wayland con la GPU virtual. En una maquina fisica conserva el renderizado normal por GPU.
+
 Si eso funciona, ejecuta la opcion `3` para copiar los dotfiles.
 
 El instalador debe instalar y habilitar `sddm` para mostrar login grafico en el siguiente arranque.
