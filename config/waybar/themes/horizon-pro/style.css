@@ -68,7 +68,9 @@ tooltip label { padding: 6px; }
 #tray,
 #pulseaudio,
 #network,
+#backlight,
 #battery,
+#custom-theme,
 #custom-notification,
 #custom-power {
   padding: 0 10px;
@@ -76,14 +78,18 @@ tooltip label { padding: 6px; }
 
 #pulseaudio { color: @accent; }
 #network { color: @text; }
+#backlight { color: @yellow; }
 #battery { color: @green; }
+#custom-theme { color: @accent; font-size: 14px; }
 #custom-notification { color: @accent; font-size: 14px; }
 #custom-power { color: @red; font-size: 14px; padding-right: 15px; }
 
 #pulseaudio:hover,
 #network:hover,
+#backlight:hover,
 #battery:hover,
 #clock:hover,
+#custom-theme:hover,
 #custom-notification:hover,
 #custom-power:hover,
 #custom-launcher:hover {

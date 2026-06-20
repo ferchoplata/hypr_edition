@@ -36,7 +36,9 @@ tooltip label { padding: 8px; }
 #clock,
 #network,
 #pulseaudio,
+#backlight,
 #battery,
+#custom-theme,
 #custom-notification,
 #custom-power {
   background: @glass;
@@ -87,6 +89,8 @@ tooltip label { padding: 8px; }
 
 #network,
 #pulseaudio,
+#backlight,
+#custom-theme,
 #custom-notification,
 #custom-power {
   min-width: 16px;
@@ -95,7 +99,9 @@ tooltip label { padding: 8px; }
 
 #network { color: @cyan; }
 #pulseaudio { color: @blue; }
+#backlight { color: @yellow; }
 #battery { color: @green; }
+#custom-theme { color: @blue; }
 #custom-notification { color: @cyan; }
 #custom-power { color: @red; }
 
@@ -105,7 +111,9 @@ tooltip label { padding: 8px; }
 #clock:hover,
 #network:hover,
 #pulseaudio:hover,
+#backlight:hover,
 #battery:hover,
+#custom-theme:hover,
 #custom-notification:hover,
 #custom-power:hover {
   background: @glass_strong;

@@ -5,7 +5,7 @@
   "spacing": 4,
   "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["tray", "pulseaudio", "network", "battery", "custom/notification", "custom/power"],
+  "modules-right": ["tray", "pulseaudio", "network", "backlight", "battery", "custom/theme", "custom/notification", "custom/power"],
   "custom/launcher": {
     "format": "󰣇",
     "tooltip-format": "Aplicaciones",
@@ -33,14 +33,24 @@
       "default": ["󰕿", "󰖀", "󰕾"]
     },
     "on-click": "pavucontrol",
-    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    "on-click-right": "swayosd-client --output-volume mute-toggle",
+    "on-scroll-up": "swayosd-client --output-volume +5",
+    "on-scroll-down": "swayosd-client --output-volume -5"
   },
   "network": {
-    "format-wifi": "󰖩  {essid}",
-    "format-ethernet": "󰈀  wired",
-    "format-disconnected": "󰖪  offline",
+    "format-wifi": "󰖩  Wi-Fi {essid}",
+    "format-ethernet": "󰈀  Red",
+    "format-disconnected": "󰖪  Sin red",
     "tooltip-format": "{ifname}\n{ipaddr}",
     "on-click": "nm-connection-editor"
+  },
+  "backlight": {
+    "format": "󰃠 {percent}%",
+    "tooltip-format": "Brillo {percent}%",
+    "on-click": "swayosd-client --brightness +10",
+    "on-click-right": "swayosd-client --brightness -10",
+    "on-scroll-up": "swayosd-client --brightness +5",
+    "on-scroll-down": "swayosd-client --brightness -5"
   },
   "battery": {
     "format": "{icon} {capacity}%",
@@ -71,9 +81,14 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
+  "custom/theme": {
+    "format": "󰏘",
+    "tooltip-format": "Cambiar modelo de barra",
+    "on-click": "hypr-edition-waybar-theme"
+  },
   "custom/power": {
     "format": "",
     "tooltip-format": "Energia y sesion",
-    "on-click": "wlogout"
+    "on-click": "hypr-edition-power-menu"
   }
 }

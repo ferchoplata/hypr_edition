@@ -43,8 +43,10 @@ tooltip label { padding: 7px; }
 #bluetooth,
 #network,
 #pulseaudio,
+#backlight,
 #battery,
 #clock,
+#custom-theme,
 #custom-notification,
 #custom-power {
   background: @surface;
@@ -98,8 +100,10 @@ tooltip label { padding: 7px; }
 #bluetooth { color: @cyan; border-radius: 3px; }
 #network { color: @cyan; border-radius: 3px; }
 #pulseaudio { color: @blue; border-radius: 3px; }
+#backlight { color: @yellow; border-radius: 3px; }
 #battery { color: @green; border-radius: 3px; }
 #clock { color: @text; border-radius: 3px; }
+#custom-theme { color: @blue; font-size: 15px; border-radius: 3px; }
 #custom-notification { color: @cyan; font-size: 15px; border-radius: 3px; }
 #custom-power {
   color: @red;
@@ -113,8 +117,10 @@ tooltip label { padding: 7px; }
 #bluetooth:hover,
 #network:hover,
 #pulseaudio:hover,
+#backlight:hover,
 #battery:hover,
 #clock:hover,
+#custom-theme:hover,
 #custom-notification:hover,
 #custom-power:hover,
 #custom-launcher:hover {
@@ -126,3 +132,10 @@ tooltip label { padding: 7px; }
 #pulseaudio.muted,
 #network.disconnected,
 #bluetooth.disabled { color: @muted; }
+#bluetooth.disabled {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  font-size: 0;
+}

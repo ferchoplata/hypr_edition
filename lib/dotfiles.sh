@@ -3,6 +3,8 @@
 install_user_launchers() {
   local launcher_source="${SCRIPT_DIR}/scripts/launch-kitty.sh"
   local waybar_theme_source="${SCRIPT_DIR}/scripts/waybar-theme.sh"
+  local bluetooth_source="${SCRIPT_DIR}/scripts/bluetooth-panel.sh"
+  local power_source="${SCRIPT_DIR}/scripts/power-menu.sh"
   local desktop_source="${SCRIPT_DIR}/assets/applications/kitty.desktop"
 
   info "Instalando lanzadores de hypr_edition."
@@ -12,6 +14,12 @@ install_user_launchers() {
   run_cmd install -Dm755 \
     "${waybar_theme_source}" \
     "${HOME}/.local/bin/hypr-edition-waybar-theme"
+  run_cmd install -Dm755 \
+    "${bluetooth_source}" \
+    "${HOME}/.local/bin/hypr-edition-bluetooth"
+  run_cmd install -Dm755 \
+    "${power_source}" \
+    "${HOME}/.local/bin/hypr-edition-power-menu"
   run_cmd install -Dm644 \
     "${desktop_source}" \
     "${HOME}/.local/share/applications/kitty.desktop"

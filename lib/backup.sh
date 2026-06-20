@@ -9,6 +9,7 @@ backup_configs() {
     "${HOME}/.config/rofi"
     "${HOME}/.config/kitty"
     "${HOME}/.config/swaync"
+    "${HOME}/.config/swayosd"
     "${HOME}/.config/wlogout"
   )
 

@@ -15,6 +15,8 @@ Hoy el proyecto incluye:
 - copia de dotfiles base para Hyprland, Waybar, Kitty y Rofi
 - tres modelos profesionales de Waybar con selector instantaneo
 - centro de control para audio, brillo, conectividad, multimedia y notificaciones
+- indicador temporal SwayOSD para volumen, brillo y teclas multimedia
+- menu de energia integrado con bloqueo, suspension, reinicio y apagado
 - tema sobrio y autosuficiente para Kitty
 - renderizado de Kitty por CPU en maquinas virtuales y por GPU en equipos fisicos
 - activacion de servicios recomendados cuando existen

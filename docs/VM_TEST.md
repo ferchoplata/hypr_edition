@@ -19,6 +19,8 @@ Usa la ISO Desktop Edition para VMware.
 - aceleracion 3D activada si VMware la ofrece
 - red activada durante la instalacion
 
+VMware presenta la red como Ethernet y normalmente no expone adaptadores reales de Wi-Fi, Bluetooth ni brillo. La interfaz debe ocultar o desactivar esos controles sin bloquear Waybar ni Command Center.
+
 ## Instalar CachyOS
 
 Durante la instalacion de CachyOS, elige primero un escritorio normal. KDE Plasma es una opcion comoda para la primera prueba porque el instalador y las herramientas del sistema son faciles de revisar.

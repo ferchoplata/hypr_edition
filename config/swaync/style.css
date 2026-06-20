@@ -137,6 +137,15 @@
   color: #101720;
 }
 
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(n+5) > button {
+  border-color: rgba(243, 139, 168, 0.22);
+}
+
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(n+5) > button:hover {
+  background: rgba(243, 139, 168, 0.18);
+  border-color: rgba(243, 139, 168, 0.52);
+}
+
 .widget-mpris-player {
   background: rgba(10, 18, 27, 0.70);
   border-radius: 12px;

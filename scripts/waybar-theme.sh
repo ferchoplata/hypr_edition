@@ -3,20 +3,17 @@ set -euo pipefail
 
 readonly WAYBAR_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/waybar"
 
-choose_theme() {
-  local choice
+next_theme() {
+  local current="command-center"
 
-  choice="$(printf '%s\n' \
-    'Horizon Pro' \
-    'Aero Glass' \
-    'Command Center' \
-    | rofi -dmenu -i -p 'Modelo de Waybar')" || return 1
+  if [[ -r "${WAYBAR_DIR}/.active-theme" ]]; then
+    read -r current < "${WAYBAR_DIR}/.active-theme" || current="command-center"
+  fi
 
-  case "${choice}" in
-    'Horizon Pro') printf 'horizon-pro\n' ;;
-    'Aero Glass') printf 'aero-glass\n' ;;
-    'Command Center') printf 'command-center\n' ;;
-    *) return 1 ;;
+  case "${current}" in
+    horizon-pro) printf 'aero-glass\n' ;;
+    aero-glass) printf 'command-center\n' ;;
+    *) printf 'horizon-pro\n' ;;
   esac
 }
 
@@ -49,7 +46,7 @@ main() {
   local theme="${1:-}"
 
   if [[ -z "${theme}" ]]; then
-    theme="$(choose_theme)" || exit 0
+    theme="$(next_theme)"
   fi
 
   case "${theme}" in

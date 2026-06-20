@@ -10,6 +10,8 @@ files=(
   scripts/preflight.sh
   scripts/launch-kitty.sh
   scripts/waybar-theme.sh
+  scripts/bluetooth-panel.sh
+  scripts/power-menu.sh
   lib/backup.sh
   lib/common.sh
   lib/detect.sh

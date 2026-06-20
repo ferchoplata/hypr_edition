@@ -6,7 +6,7 @@ waybar
 rofi-wayland|rofi
 kitty
 swaync
-wlogout
+swayosd
 hyprpaper
 hyprlock
 hypridle
@@ -31,6 +31,7 @@ unzip
 rsync
 polkit-gnome
 brightnessctl
+libnotify
 grim
 slurp
 wl-clipboard

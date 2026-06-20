@@ -8,7 +8,7 @@
   "spacing": 10,
   "modules-left": ["custom/launcher", "hyprland/window"],
   "modules-center": ["hyprland/workspaces", "clock"],
-  "modules-right": ["network", "pulseaudio", "battery", "custom/notification", "custom/power"],
+  "modules-right": ["network", "pulseaudio", "backlight", "battery", "custom/theme", "custom/notification", "custom/power"],
   "custom/launcher": {
     "format": "󰣇",
     "tooltip-format": "Abrir aplicaciones",
@@ -36,9 +36,9 @@
     "on-click": "swaync-client -t -sw"
   },
   "network": {
-    "format-wifi": "󰖩",
-    "format-ethernet": "󰈀",
-    "format-disconnected": "󰖪",
+    "format-wifi": "󰖩 Wi-Fi",
+    "format-ethernet": "󰈀 Red",
+    "format-disconnected": "󰖪 Sin red",
     "tooltip-format-wifi": "{essid} · {signalStrength}%\n{ipaddr}",
     "tooltip-format-ethernet": "Ethernet\n{ipaddr}",
     "on-click": "nm-connection-editor"
@@ -51,7 +51,17 @@
     },
     "tooltip-format": "Volumen {volume}%",
     "on-click": "pavucontrol",
-    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    "on-click-right": "swayosd-client --output-volume mute-toggle",
+    "on-scroll-up": "swayosd-client --output-volume +5",
+    "on-scroll-down": "swayosd-client --output-volume -5"
+  },
+  "backlight": {
+    "format": "󰃠",
+    "tooltip-format": "Brillo {percent}%",
+    "on-click": "swayosd-client --brightness +10",
+    "on-click-right": "swayosd-client --brightness -10",
+    "on-scroll-up": "swayosd-client --brightness +5",
+    "on-scroll-down": "swayosd-client --brightness -5"
   },
   "battery": {
     "format": "{icon} {capacity}%",
@@ -82,9 +92,14 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
+  "custom/theme": {
+    "format": "󰏘",
+    "tooltip-format": "Cambiar modelo de barra",
+    "on-click": "hypr-edition-waybar-theme"
+  },
   "custom/power": {
     "format": "",
     "tooltip-format": "Energia y sesion",
-    "on-click": "wlogout"
+    "on-click": "hypr-edition-power-menu"
   }
 }
