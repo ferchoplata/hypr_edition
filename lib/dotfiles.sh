@@ -2,6 +2,11 @@
 
 install_user_launchers() {
   local launcher_source="${SCRIPT_DIR}/scripts/launch-kitty.sh"
+  local swaync_source="${SCRIPT_DIR}/scripts/launch-swaync.sh"
+  local swayosd_source="${SCRIPT_DIR}/scripts/launch-swayosd.sh"
+  local notifications_source="${SCRIPT_DIR}/scripts/notification-center.sh"
+  local volume_source="${SCRIPT_DIR}/scripts/volume-control.sh"
+  local brightness_source="${SCRIPT_DIR}/scripts/brightness-control.sh"
   local waybar_theme_source="${SCRIPT_DIR}/scripts/waybar-theme.sh"
   local bluetooth_source="${SCRIPT_DIR}/scripts/bluetooth-panel.sh"
   local power_source="${SCRIPT_DIR}/scripts/power-menu.sh"
@@ -11,6 +16,21 @@ install_user_launchers() {
   run_cmd install -Dm755 \
     "${launcher_source}" \
     "${HOME}/.local/bin/hypr-edition-kitty"
+  run_cmd install -Dm755 \
+    "${swaync_source}" \
+    "${HOME}/.local/bin/hypr-edition-swaync"
+  run_cmd install -Dm755 \
+    "${swayosd_source}" \
+    "${HOME}/.local/bin/hypr-edition-swayosd"
+  run_cmd install -Dm755 \
+    "${notifications_source}" \
+    "${HOME}/.local/bin/hypr-edition-notifications"
+  run_cmd install -Dm755 \
+    "${volume_source}" \
+    "${HOME}/.local/bin/hypr-edition-volume"
+  run_cmd install -Dm755 \
+    "${brightness_source}" \
+    "${HOME}/.local/bin/hypr-edition-brightness"
   run_cmd install -Dm755 \
     "${waybar_theme_source}" \
     "${HOME}/.local/bin/hypr-edition-waybar-theme"

@@ -74,17 +74,17 @@
     },
     "scroll-step": 5,
     "on-click": "pavucontrol",
-    "on-click-right": "swayosd-client --output-volume mute-toggle",
-    "on-scroll-up": "swayosd-client --output-volume +5",
-    "on-scroll-down": "swayosd-client --output-volume -5"
+    "on-click-right": "hypr-edition-volume mute",
+    "on-scroll-up": "hypr-edition-volume up",
+    "on-scroll-down": "hypr-edition-volume down"
   },
   "backlight": {
     "format": "󰃠  {percent}%",
     "tooltip-format": "Brillo {percent}%",
-    "on-click": "swayosd-client --brightness +10",
-    "on-click-right": "swayosd-client --brightness -10",
-    "on-scroll-up": "swayosd-client --brightness +5",
-    "on-scroll-down": "swayosd-client --brightness -5"
+    "on-click": "hypr-edition-brightness more",
+    "on-click-right": "hypr-edition-brightness less",
+    "on-scroll-up": "hypr-edition-brightness up",
+    "on-scroll-down": "hypr-edition-brightness down"
   },
   "battery": {
     "format": "{icon}  {capacity}%",
@@ -100,7 +100,7 @@
     "format": "󰥔  {:%H:%M}",
     "format-alt": "󰃭  {:%a %d %b}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "on-click": "swaync-client -t -sw"
+    "on-click": "hypr-edition-notifications -t -sw"
   },
   "custom/notification": {
     "tooltip": true,
@@ -117,9 +117,9 @@
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
+    "exec": "hypr-edition-notifications -swb",
+    "on-click": "hypr-edition-notifications -t -sw",
+    "on-click-right": "hypr-edition-notifications -d -sw",
     "escape": true
   },
   "custom/theme": {

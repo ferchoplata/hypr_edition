@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-exec swaync-client -t -sw
+exec hypr-edition-notifications -t -sw

@@ -9,6 +9,11 @@ files=(
   install.sh
   scripts/preflight.sh
   scripts/launch-kitty.sh
+  scripts/launch-swaync.sh
+  scripts/launch-swayosd.sh
+  scripts/notification-center.sh
+  scripts/volume-control.sh
+  scripts/brightness-control.sh
   scripts/waybar-theme.sh
   scripts/bluetooth-panel.sh
   scripts/power-menu.sh
