@@ -10,6 +10,7 @@ install_user_launchers() {
   local waybar_theme_source="${SCRIPT_DIR}/scripts/waybar-theme.sh"
   local bluetooth_source="${SCRIPT_DIR}/scripts/bluetooth-panel.sh"
   local power_source="${SCRIPT_DIR}/scripts/power-menu.sh"
+  local wallpaper_source="${SCRIPT_DIR}/scripts/wallpaper-control.sh"
   local desktop_source="${SCRIPT_DIR}/assets/applications/kitty.desktop"
 
   info "Instalando lanzadores de hypr_edition."
@@ -40,9 +41,31 @@ install_user_launchers() {
   run_cmd install -Dm755 \
     "${power_source}" \
     "${HOME}/.local/bin/hypr-edition-power-menu"
+  run_cmd install -Dm755 \
+    "${wallpaper_source}" \
+    "${HOME}/.local/bin/hypr-edition-wallpaper"
   run_cmd install -Dm644 \
     "${desktop_source}" \
     "${HOME}/.local/share/applications/kitty.desktop"
+}
+
+install_wallpapers() {
+  local source_dir="${SCRIPT_DIR}/wallpapers"
+  local target_dir="${HOME}/Pictures/HyprEdition"
+
+  [[ -d "${source_dir}" ]] || return 0
+
+  info "Instalando fondos de escritorio."
+  run_cmd mkdir -p "${target_dir}"
+  run_cmd rsync -a \
+    --include='*/' \
+    --include='*.jpg' \
+    --include='*.jpeg' \
+    --include='*.png' \
+    --include='*.webp' \
+    --exclude='*' \
+    "${source_dir}/" \
+    "${target_dir}/"
 }
 
 install_default_waybar_theme() {
@@ -72,5 +95,6 @@ install_dotfiles() {
   done
 
   install_default_waybar_theme
+  install_wallpapers
   install_user_launchers
 }
