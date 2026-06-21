@@ -73,6 +73,7 @@ MENU
         backup_configs
         install_dotfiles
         configure_hyprland_session
+        configure_password_feedback
         enable_recommended_services
         success "Instalacion completa finalizada."
         ;;
@@ -88,6 +89,7 @@ MENU
         backup_configs
         install_dotfiles
         configure_hyprland_session
+        configure_password_feedback
         success "Configuracion copiada."
         ;;
       4)

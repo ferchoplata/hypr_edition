@@ -19,3 +19,23 @@ configure_hyprland_session() {
   sudo install -d /usr/share/wayland-sessions
   sudo install -m 0644 "${SCRIPT_DIR}/config/sessions/hypr-edition.desktop" /usr/share/wayland-sessions/hypr-edition.desktop
 }
+
+configure_password_feedback() {
+  local source_file="${SCRIPT_DIR}/assets/sudoers/hypr-edition"
+  local target_file="/etc/sudoers.d/hypr-edition"
+
+  require_command sudo
+  require_command visudo
+
+  info "Activando indicadores visuales al escribir contrasenas con sudo."
+
+  if is_dry_run; then
+    run_cmd visudo -cf "${source_file}"
+    run_cmd sudo install -Dm0440 "${source_file}" "${target_file}"
+    return 0
+  fi
+
+  visudo -cf "${source_file}" >/dev/null
+  sudo install -Dm0440 "${source_file}" "${target_file}"
+  sudo visudo -cf "${target_file}" >/dev/null
+}
