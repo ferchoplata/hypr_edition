@@ -52,6 +52,7 @@ install_user_launchers() {
 install_wallpapers() {
   local source_dir="${SCRIPT_DIR}/wallpapers"
   local target_dir="${HOME}/Pictures/HyprEdition"
+  local native_dir
 
   [[ -d "${source_dir}" ]] || return 0
 
@@ -66,6 +67,24 @@ install_wallpapers() {
     --exclude='*' \
     "${source_dir}/" \
     "${target_dir}/"
+
+  for native_dir in \
+    "${HOME}/.config/hypr/wallpapers" \
+    "${HOME}/Pictures/wallpapers" \
+    "${HOME}/Pictures/Wallpapers"; do
+    [[ -d "${native_dir}" ]] || continue
+    info "Integrando fondos con: ${native_dir}"
+    run_cmd mkdir -p "${native_dir}/HyprEdition"
+    run_cmd rsync -a \
+      --include='*/' \
+      --include='*.jpg' \
+      --include='*.jpeg' \
+      --include='*.png' \
+      --include='*.webp' \
+      --exclude='*' \
+      "${source_dir}/" \
+      "${native_dir}/HyprEdition/"
+  done
 }
 
 install_default_waybar_theme() {
