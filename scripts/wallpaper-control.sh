@@ -5,6 +5,7 @@ wallpaper_dir="${HYPR_EDITION_WALLPAPER_DIR:-${HOME}/Pictures/HyprEdition}"
 state_dir="${XDG_STATE_HOME:-${HOME}/.local/state}/hypr-edition"
 state_file="${state_dir}/wallpaper-index"
 log_file="${state_dir}/wallpaper.log"
+daemon_log="${state_dir}/wallpaper-daemon.log"
 hyprpaper_config="${XDG_CONFIG_HOME:-${HOME}/.config}/hypr/hyprpaper.conf"
 
 mapfile -d '' wallpapers < <(
@@ -40,9 +41,16 @@ esac
 
 selected_wallpaper="${wallpapers[selected_index]}"
 
+mkdir -p "$(dirname "${hyprpaper_config}")"
+cat > "${hyprpaper_config}" <<EOF
+preload = ${selected_wallpaper}
+wallpaper = ,${selected_wallpaper}
+splash = false
+EOF
+
 apply_with_swww() {
   if ! pgrep -x swww-daemon >/dev/null 2>&1; then
-    swww-daemon >>"${log_file}" 2>&1 &
+    swww-daemon >>"${daemon_log}" 2>&1 &
     sleep 0.5
   fi
   swww img "${selected_wallpaper}" --transition-type grow --transition-duration 0.7
@@ -50,31 +58,31 @@ apply_with_swww() {
 
 apply_with_awww() {
   if ! pgrep -x awww-daemon >/dev/null 2>&1; then
-    awww-daemon >>"${log_file}" 2>&1 &
+    awww-daemon >>"${daemon_log}" 2>&1 &
     sleep 0.5
   fi
   awww img "${selected_wallpaper}" --transition-type grow --transition-duration 0.7
 }
 
 apply_with_hyprpaper() {
-  if ! hyprctl hyprpaper listactive >/dev/null 2>&1; then
-    pkill -x hyprpaper >/dev/null 2>&1 || true
-    hyprpaper >>"${log_file}" 2>&1 &
-    for _ in {1..30}; do
-      hyprctl hyprpaper listactive >/dev/null 2>&1 && break
-      sleep 0.1
-    done
-  fi
+  pkill -x hyprpaper >/dev/null 2>&1 || true
+  sleep 0.2
+  hyprpaper >>"${daemon_log}" 2>&1 &
 
-  if ! hyprctl hyprpaper reload ",${selected_wallpaper}" >/dev/null 2>&1; then
-    hyprctl hyprpaper preload "${selected_wallpaper}" >/dev/null
-    hyprctl hyprpaper wallpaper ",${selected_wallpaper}" >/dev/null
-  fi
+  for _ in {1..30}; do
+    if hyprctl hyprpaper listactive >/dev/null 2>&1; then
+      sleep 0.5
+      pgrep -x hyprpaper >/dev/null 2>&1 && return 0
+    fi
+    sleep 0.1
+  done
+
+  return 1
 }
 
 apply_with_swaybg() {
   pkill -x swaybg >/dev/null 2>&1 || true
-  swaybg -i "${selected_wallpaper}" -m fill >>"${log_file}" 2>&1 &
+  swaybg -i "${selected_wallpaper}" -m fill >>"${daemon_log}" 2>&1 &
 }
 
 backend=""
@@ -103,13 +111,6 @@ fi
 
 printf '%s\n' "${selected_index}" > "${state_file}"
 printf 'backend=%s wallpaper=%s\n' "${backend}" "${selected_wallpaper}" > "${log_file}"
-
-mkdir -p "$(dirname "${hyprpaper_config}")"
-cat > "${hyprpaper_config}" <<EOF
-preload = ${selected_wallpaper}
-wallpaper = ,${selected_wallpaper}
-splash = false
-EOF
 
 if [[ "${1:-next}" != "init" ]] && command -v notify-send >/dev/null 2>&1; then
   notify-send -a "Hypr Edition" "Fondo cambiado (${backend})" "$(basename "${selected_wallpaper}")"
