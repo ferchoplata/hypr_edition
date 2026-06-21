@@ -4,6 +4,7 @@ set -euo pipefail
 wallpaper_dir="${HYPR_EDITION_WALLPAPER_DIR:-${HOME}/Pictures/HyprEdition}"
 state_dir="${XDG_STATE_HOME:-${HOME}/.local/state}/hypr-edition"
 state_file="${state_dir}/wallpaper-index"
+log_file="${state_dir}/wallpaper.log"
 hyprpaper_config="${XDG_CONFIG_HOME:-${HOME}/.config}/hypr/hyprpaper.conf"
 
 mapfile -d '' wallpapers < <(
@@ -16,6 +17,8 @@ if (( ${#wallpapers[@]} == 0 )); then
   printf 'No se encontraron fondos en %s\n' "${wallpaper_dir}" >&2
   exit 1
 fi
+
+mkdir -p "${state_dir}"
 
 current_index=0
 if [[ -r "${state_file}" ]]; then
@@ -34,22 +37,60 @@ elif [[ -r "${hyprpaper_config}" ]]; then
 fi
 
 case "${1:-next}" in
+  init) selected_index="${current_index}" ;;
   next) selected_index=$(( (current_index + 1) % ${#wallpapers[@]} )) ;;
   previous|prev) selected_index=$(( (current_index - 1 + ${#wallpapers[@]}) % ${#wallpapers[@]} )) ;;
   *)
-    printf 'Uso: %s [next|previous]\n' "${0##*/}" >&2
+    printf 'Uso: %s [init|next|previous]\n' "${0##*/}" >&2
     exit 2
     ;;
 esac
 
 selected_wallpaper="${wallpapers[selected_index]}"
 
+stop_conflicting_wallpaper_services() {
+  command -v swww >/dev/null 2>&1 && swww kill >/dev/null 2>&1 || true
+  pkill -x swww-daemon >/dev/null 2>&1 || true
+  pkill -x swaybg >/dev/null 2>&1 || true
+}
+
+ensure_hyprpaper() {
+  if hyprctl hyprpaper listactive >/dev/null 2>&1; then
+    return 0
+  fi
+
+  pkill -x hyprpaper >/dev/null 2>&1 || true
+
+  command -v hyprpaper >/dev/null 2>&1 || {
+    printf 'hyprpaper no esta instalado.\n' >&2
+    return 1
+  }
+
+  nohup hyprpaper >>"${log_file}" 2>&1 &
+  disown || true
+
+  for _ in {1..30}; do
+    hyprctl hyprpaper listactive >/dev/null 2>&1 && return 0
+    sleep 0.1
+  done
+
+  printf 'hyprpaper no pudo iniciar. Revisa %s\n' "${log_file}" >&2
+  return 1
+}
+
+if [[ "${1:-next}" == "init" ]]; then
+  sleep 2
+fi
+
+stop_conflicting_wallpaper_services
+ensure_hyprpaper
+
 if ! hyprctl hyprpaper reload ",${selected_wallpaper}" >/dev/null 2>&1; then
   hyprctl hyprpaper preload "${selected_wallpaper}" >/dev/null
   hyprctl hyprpaper wallpaper ",${selected_wallpaper}" >/dev/null
 fi
 
-mkdir -p "${state_dir}" "$(dirname "${hyprpaper_config}")"
+mkdir -p "$(dirname "${hyprpaper_config}")"
 printf '%s\n' "${selected_index}" > "${state_file}"
 cat > "${hyprpaper_config}" <<EOF
 preload = ${selected_wallpaper}
@@ -57,6 +98,6 @@ wallpaper = ,${selected_wallpaper}
 splash = false
 EOF
 
-if command -v notify-send >/dev/null 2>&1; then
+if [[ "${1:-next}" != "init" ]] && command -v notify-send >/dev/null 2>&1; then
   notify-send -a "Hypr Edition" "Fondo cambiado" "$(basename "${selected_wallpaper}")"
 fi
