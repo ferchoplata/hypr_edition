@@ -2,6 +2,10 @@
 
 `hypr_edition` es un instalador post-instalacion para dejar Hyprland configurado sobre CachyOS o Arch Linux.
 
+## Captura oficial
+
+![Hypr Edition con Command Center](assets/screenshots/hypr-edition-command-center.png)
+
 La base actual del proyecto es un instalador simple y funcional. La idea modular de una version anterior sigue viva, pero por ahora queda como roadmap y no como interfaz publica del repo. Asi evitamos prometer modulos, perfiles y restauraciones que todavia no existen en el codigo.
 
 ## Estado actual
